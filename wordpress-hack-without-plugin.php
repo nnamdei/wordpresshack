@@ -74,3 +74,20 @@ function sdt_remove_ver_css_js( $src ) {
 	return $src;
 }
 
+//changing wp login logo url 
+
+function my_login_logo_url() {
+return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+return 'Vendes Nigeria';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+//remove back to website hyperlink
+p#backtoblog {
+  display: none;
+}
+
