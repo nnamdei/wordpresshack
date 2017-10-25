@@ -91,3 +91,12 @@ p#backtoblog {
   display: none;
 }
 
+//restrict jetpack for all user roles
+add_action( 'admin_init', 'restrict_page' );
+function restrict_page() {
+    if ( class_exists( 'Jetpack' ) && !current_user_can( 'manage_options' ) ) {
+        if ( isset( $_GET['page'] ) && $_GET['page'] == 'jetpack' ) {
+            wp_die( 'no access' );
+        }
+    }
+}
