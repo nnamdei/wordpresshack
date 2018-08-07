@@ -138,3 +138,18 @@ define( 'DISALLOW_FILE_EDIT', true );
 p#backtoblog {
 display: none;
 }
+
+/*disabling directory browsing
+
+Add this to .htaccess file */
+
+Options -Indexes
+
+/*block php execution in specific folders 
+
+Go to the folder .../wp-content/themes for example, create .htaccess file and put this code inside */
+*/
+
+<Files *.php>
+deny from all
+</Files>
