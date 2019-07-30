@@ -128,6 +128,22 @@ function restrict_page() {
  * Disable Editing in Dashboard (add to wp-config.php)
  */
 define( 'DISALLOW_FILE_EDIT', true );
+
+add_filter( 'rest_authentication_errors', 'rest_authentication_errors');
+
+/**
+ * Disable REST API for not users that are not logged in.
+ */
+function rest_authentication_errors( $result ) {
+    if ( ! empty( $result ) ) {
+        return $result;
+    }
+    if ( ! is_user_logged_in() ) {
+        return new WP_Error( 'rest_not_logged_in', 'You are not currently logged in.', array( 'status' => 401 ) );
+    }
+    return $result;
+}
+
 ?>
 
 /*=== CSS ===*/
